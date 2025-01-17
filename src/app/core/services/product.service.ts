@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable, of} from 'rxjs';
 import {Product} from '../interfaces/product-model';
-import {PRODUCT_BASE_URL} from '../constants/url-constants';
+import {PRODUCT_BASE_URL} from '../../shared/constants/url-constants';
 
 @Injectable({ providedIn: "root" })
 export class ProductService {
