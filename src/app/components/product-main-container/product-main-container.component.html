@@ -1,1 +1,6 @@
-<p>product-main-container works!</p>
+<div>
+  <div *ngIf="(products$ | async) as products" class="product-list">
+    <app-products-table [dataSource]="products"></app-products-table>
+  </div>
+</div>
+<p></p>

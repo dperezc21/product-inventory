@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ProductMainContainerComponent} from './components/product-main-container/product-main-container.component';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ProductMainContainerComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.css'
