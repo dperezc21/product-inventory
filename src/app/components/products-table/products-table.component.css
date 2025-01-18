@@ -1,1 +1,14 @@
+.container-products {
+  display: flex;
+  flex-direction: column;
+}
 
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+}

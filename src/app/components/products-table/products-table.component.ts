@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from '../../core/interfaces/product-model';
 import {
   MatCell,
@@ -9,6 +9,8 @@ import {
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable
 } from '@angular/material/table';
+import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-products-table',
@@ -22,7 +24,11 @@ import {
     MatHeaderRow,
     MatRow,
     MatRowDef,
-    MatHeaderRowDef
+    MatHeaderRowDef,
+    MatMenu,
+    MatMenuItem,
+    MatMenuTrigger,
+    MatButton
   ],
   templateUrl: './products-table.component.html',
   standalone: true,
@@ -30,7 +36,10 @@ import {
 })
 export class ProductsTableComponent {
 
+  @Output() addProduct: EventEmitter<void> = new EventEmitter();
+  @Output() editProduct: EventEmitter<Product> = new EventEmitter();
+  @Output() deleteProduct: EventEmitter<number> = new EventEmitter();
   @Input() dataSource!: Product[];
-  displayedColumns: string[] = ['name', 'price', 'stock', 'categoryName'];
+  displayedColumns: string[] = ['name', 'price', 'stock', 'categoryName', 'menu'];
 
 }

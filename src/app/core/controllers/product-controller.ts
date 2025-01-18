@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProductService} from '../services/product.service';
-import {BehaviorSubject, Observable, Subject, takeUntil, tap} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Product} from '../interfaces/product-model';
 import {SnackBarService} from '../services/snack-bar.service';
 
@@ -13,15 +13,15 @@ export class ProductController {
               private snackBarService: SnackBarService) {}
 
   getAllProduct(): void {
-    /*const product: Product[] = [
+    const product: Product[] = [
       {productName: "hola", productPrice: 199, category: {categoryName: "name", id: 0}, stock: 21}
     ];
-    this.setProducts$(product);*/
-    this.productService.getProductList()
+    this.setProducts$(product);
+    /*this.productService.getProductList()
       .pipe(takeUntil(this.unsubscribe$), tap({
         next: (products: Product[]) => this.setProducts$(products),
         error: () => this.snackBarService.showSnackBar("Error unexpected")
-      })).subscribe();
+      })).subscribe();*/
   }
 
   setProducts$(products: Product[]): void {
