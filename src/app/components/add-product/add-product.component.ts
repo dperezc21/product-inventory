@@ -51,7 +51,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       productPrice: value.price,
       category: value.category
     }
-    this.productController.createProduct(productToSave, this.close);
+    this.productController.createProduct(productToSave, this.dialogRef);
   }
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       stock: new FormControl('', [Validators.required]),
-      //category: new FormControl('', [Validators.required])
+      category: new FormControl('', [Validators.required])
     });
   }
 

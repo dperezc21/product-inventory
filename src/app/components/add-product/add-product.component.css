@@ -15,3 +15,7 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.buttons-container button {
+  margin: 10px;
+}

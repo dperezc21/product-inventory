@@ -3,6 +3,7 @@ import {ProductService} from '../services/product.service';
 import {BehaviorSubject, Observable, Subject, takeUntil, tap} from 'rxjs';
 import {Product} from '../interfaces/product-model';
 import {SnackBarService} from '../services/snack-bar.service';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Injectable({ providedIn: "root" })
 export class ProductController {
@@ -20,13 +21,13 @@ export class ProductController {
       })).subscribe();
   }
 
-  createProduct(product: Product, closeDialog:() => void): void {
+  createProduct(product: Product, dialog?: MatDialogRef<any>): void {
     this.productService.saveProduct(product)
       .pipe(takeUntil(this.unsubscribe$),
         tap({
           next: (productCreated: Product) => {
             this.setNewProduct(productCreated);
-            closeDialog();
+            dialog?.close();
             this.snackBarService.showSnackBar("product saved")
           },
           error: () => this.snackBarService.showSnackBar("product not saved")
