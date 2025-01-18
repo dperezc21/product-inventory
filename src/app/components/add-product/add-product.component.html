@@ -3,7 +3,7 @@
     <h3>Add Product</h3>
   </div>
 
-  <form [formGroup]="addProductForm" (ngSubmit)="saveProduct(null)">
+  <form class="form-product" [formGroup]="addProductForm" (ngSubmit)="saveProduct(addProductForm.value)">
     <mat-form-field>
       <mat-label>name</mat-label>
       <input matInput placeholder="product name" formControlName="name">
@@ -26,10 +26,10 @@
        <mat-option>tres</mat-option>
       </mat-select>
     </mat-form-field>-->
-  </form>
 
-  <mat-card-actions class="buttons-container">
-    <button mat-button (click)="close()">Cancel</button>
-    <button mat-raised-button type="submit">Save</button>
-  </mat-card-actions>
+    <mat-card-actions class="buttons-container">
+      <button mat-button (click)="close()" type="button">Cancel</button>
+      <button mat-raised-button type="submit" [disabled]="addProductForm.invalid">Save</button>
+    </mat-card-actions>
+  </form>
 </div>

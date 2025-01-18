@@ -7,6 +7,7 @@ import {Product} from '../../core/interfaces/product-model';
 import {MatCardActions} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
+import {ProductController} from '../../core/controllers/product-controller';
 
 @Component({
   selector: 'app-add-product',
@@ -25,10 +26,11 @@ import {MatInput} from '@angular/material/input';
   styleUrl: './add-product.component.css'
 })
 export class AddProductComponent implements OnInit {
-  readonly dialogRef = inject(MatDialogRef<this>);
+  readonly dialogRef = inject(MatDialogRef<AddProductComponent>);
   addProductForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private productController: ProductController) {}
 
   close() {
     this.dialogRef.close();
@@ -41,8 +43,7 @@ export class AddProductComponent implements OnInit {
       productPrice: value.price,
       category: value.category
     }
-
-    this.dialogRef.close(productToSave);
+    this.productController.createProduct(productToSave, this.close);
   }
 
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class AddProductComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       stock: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required])
+      //category: new FormControl('', [Validators.required])
     });
   }
 

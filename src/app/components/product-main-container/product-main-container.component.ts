@@ -37,9 +37,7 @@ export class ProductMainContainerComponent implements OnInit, OnDestroy {
   createProduct() {
     this.dialog.open(AddProductComponent, {
       height: "600px",
-      width: "350px"
-    }).afterClosed().pipe(take(1),tap(value => {
-      console.log(value);
-    })).subscribe()
+      width: "350px",
+    });
   }
 }
