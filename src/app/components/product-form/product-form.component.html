@@ -1,0 +1,36 @@
+<div class="product-form-container">
+  <div>
+    <h3>Add Product</h3>
+  </div>
+
+  <form class="form-product" [formGroup]="addProductForm" (ngSubmit)="saveProduct(addProductForm.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>name</mat-label>
+      <input matInput placeholder="product name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>price (pesos)</mat-label>
+      <input matInput placeholder="product price" formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>stock</mat-label>
+      <input matInput placeholder="product stock" formControlName="stock">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="select category name" formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category">{{category.categoryName}}</mat-option>
+        <mat-option (click)="createCategory.emit()">
+          create category
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions class="buttons-container">
+      <button mat-button (click)="close.emit()" type="button">Cancel</button>
+      <button mat-flat-button type="submit" [disabled]="addProductForm.invalid">Save</button>
+    </mat-card-actions>
+  </form>
+</div>
