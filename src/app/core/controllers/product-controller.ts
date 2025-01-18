@@ -13,15 +13,11 @@ export class ProductController {
               private snackBarService: SnackBarService) {}
 
   getAllProduct(): void {
-    const product: Product[] = [
-      {productName: "hola", productPrice: 199, category: {categoryName: "name", id: 0}, stock: 21}
-    ];
-    this.setProducts$(product);
-    /*this.productService.getProductList()
+    this.productService.getProductList()
       .pipe(takeUntil(this.unsubscribe$), tap({
         next: (products: Product[]) => this.setProducts$(products),
         error: () => this.snackBarService.showSnackBar("Error unexpected")
-      })).subscribe();*/
+      })).subscribe();
   }
 
   createProduct(product: Product, closeDialog:() => void): void {
