@@ -6,16 +6,16 @@ import {Category} from '../../core/interfaces/category-model';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {CategoryController} from '../../core/controllers/category.controller';
 import {Observable} from 'rxjs';
-import {MatTabGroup} from '@angular/material/tabs';
 import {ProductFormComponent} from '../product-form/product-form.component';
+import {CategoryFormComponent} from '../category-form/category-form.component';
 
 @Component({
   selector: 'app-add-product',
   imports: [
     AsyncPipe,
-    MatTabGroup,
     ProductFormComponent,
-    NgIf
+    NgIf,
+    CategoryFormComponent
   ],
   templateUrl: './add-product.component.html',
   standalone: true,
@@ -24,13 +24,21 @@ import {ProductFormComponent} from '../product-form/product-form.component';
 export class AddProductComponent implements OnInit, OnDestroy {
   readonly dialogRef = inject(MatDialogRef<AddProductComponent>);
   categories$!: Observable<Category[]>;
-  createCategory!: boolean;
+  isCreatingCategory!: boolean;
 
   constructor(private productController: ProductController,
               private categoryController: CategoryController) {}
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  enableCreateCategory = () => {
+    this.isCreatingCategory = !this.isCreatingCategory;
+  }
+
+  createCategory(categoryName: string) {
+    this.categoryController.createCategory(categoryName, this.enableCreateCategory);
   }
 
   saveProduct(productToSave: Product) {
@@ -43,9 +51,5 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.categoryController.onDestroy();
-  }
-
-  enableCreateCategory() {
-    this.createCategory = !this.createCategory;
   }
 }

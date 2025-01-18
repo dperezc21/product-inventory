@@ -1,9 +1,9 @@
-<div *ngIf="!createCategory; else createCategoryForm">
+<div *ngIf="!isCreatingCategory; else createCategoryForm">
   <app-product-form [categories]="(categories$ | async) || []" (close)="closeDialog()"
                     (productToSave)="saveProduct($event)" (createCategory)="enableCreateCategory()"
   ></app-product-form>
 </div>
 
 <ng-template #createCategoryForm>
-  <p>create category</p>
+  <app-category-form (categoryToSave)="createCategory($event)" (goBack)="enableCreateCategory()"></app-category-form>
 </ng-template>

@@ -12,4 +12,8 @@ export class CategoryService {
     return this._http.get<Category[]>(`${CATEGORY_BASE_URL}/all`)
       .pipe(map(value => value));
   }
+
+  saveCategory(category: Category): Observable<Category> {
+    return this._http.post<Category>(`${CATEGORY_BASE_URL}`, category).pipe(map(value => value));
+  }
 }

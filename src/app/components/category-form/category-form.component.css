@@ -1,6 +1,11 @@
-.product-form-container {
+.main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.category-form {
+  display: flex;
+  flex-direction: column;
 }
