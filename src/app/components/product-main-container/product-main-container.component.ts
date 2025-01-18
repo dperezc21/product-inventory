@@ -6,6 +6,8 @@ import {AsyncPipe, NgIf} from '@angular/common';
 import {ProductsTableComponent} from '../products-table/products-table.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AddProductComponent} from '../add-product/add-product.component';
+import {Category} from '../../core/interfaces/category-model';
+import {CategoryController} from '../../core/controllers/category.controller';
 
 @Component({
   selector: 'app-product-main-container',
@@ -23,21 +25,23 @@ export class ProductMainContainerComponent implements OnInit, OnDestroy {
   products$!: Observable<Product[]>;
   private readonly dialog: MatDialog = inject(MatDialog);
 
-  constructor(private productController: ProductController) {}
+  constructor(private productController: ProductController,
+              private categoryController: CategoryController) {}
+
+  createProduct() {
+    this.dialog.open(AddProductComponent, {
+      height: "500px",
+      width: "350px",
+    });
+  }
 
   ngOnInit(): void {
     this.products$ = this.productController.getProducts$();
     this.productController.getAllProduct();
+    this.categoryController.getCategories();
   }
 
   ngOnDestroy(): void {
     this.productController.onDestroy();
-  }
-
-  createProduct() {
-    this.dialog.open(AddProductComponent, {
-      height: "600px",
-      width: "350px",
-    });
   }
 }

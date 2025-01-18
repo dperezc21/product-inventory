@@ -4,28 +4,26 @@
   </div>
 
   <form class="form-product" [formGroup]="addProductForm" (ngSubmit)="saveProduct(addProductForm.value)">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>name</mat-label>
       <input matInput placeholder="product name" formControlName="name">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>price</mat-label>
       <input matInput placeholder="product price" formControlName="price">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>stock</mat-label>
       <input matInput placeholder="product stock" formControlName="stock">
     </mat-form-field>
 
-    <!--<mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-select placeholder="category">
-       <mat-option>uno</mat-option>
-       <mat-option>dos</mat-option>
-       <mat-option>tres</mat-option>
+       <mat-option *ngFor="let category of categories$ | async" [value]="category">{{category.categoryName}}</mat-option>
       </mat-select>
-    </mat-form-field>-->
+    </mat-form-field>
 
     <mat-card-actions class="buttons-container">
       <button mat-button (click)="close()" type="button">Cancel</button>
