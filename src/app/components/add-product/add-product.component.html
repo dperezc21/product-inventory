@@ -1,0 +1,35 @@
+<div class="dialog-container">
+  <div>
+    <h3>Add Product</h3>
+  </div>
+
+  <form [formGroup]="addProductForm" (ngSubmit)="saveProduct(null)">
+    <mat-form-field>
+      <mat-label>name</mat-label>
+      <input matInput placeholder="product name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>price</mat-label>
+      <input matInput placeholder="product price" formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>stock</mat-label>
+      <input matInput placeholder="product stock" formControlName="stock">
+    </mat-form-field>
+
+    <!--<mat-form-field>
+      <mat-select placeholder="category">
+       <mat-option>uno</mat-option>
+       <mat-option>dos</mat-option>
+       <mat-option>tres</mat-option>
+      </mat-select>
+    </mat-form-field>-->
+  </form>
+
+  <mat-card-actions class="buttons-container">
+    <button mat-button (click)="close()">Cancel</button>
+    <button mat-raised-button type="submit">Save</button>
+  </mat-card-actions>
+</div>
