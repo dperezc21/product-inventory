@@ -30,7 +30,7 @@ export class ProductMainContainerComponent implements OnInit, OnDestroy {
 
   createProduct() {
     this.dialog.open(AddProductComponent, {
-      data: { action: "add" },
+      data: { action: "add", product: null },
       height: "450px",
       width: "350px",
     });

@@ -6,11 +6,15 @@ import {
   MatColumnDef,
   MatHeaderCell,
   MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
   MatTable
 } from '@angular/material/table';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {MatButton} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-products-table',
@@ -28,7 +32,8 @@ import {MatButton} from '@angular/material/button';
     MatMenu,
     MatMenuItem,
     MatMenuTrigger,
-    MatButton
+    MatButton,
+    MatIconModule
   ],
   templateUrl: './products-table.component.html',
   standalone: true,

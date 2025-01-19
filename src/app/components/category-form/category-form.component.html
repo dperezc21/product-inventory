@@ -9,11 +9,8 @@
     </mat-form-field>
 
     <mat-card-actions class="buttons-container">
-      <button mat-button (click)="goBack.emit()" type="button">Cancel</button>
+      <button mat-button (click)="goBack.emit()" type="button">Atras</button>
       <button mat-flat-button [disabled]="categoryNameForm.invalid" (click)="categoryToSave.emit(categoryNameForm.value)">Create</button>
     </mat-card-actions>
   </div>
-  <!--<form class="form-product" [formGroup]="categoryNameForm" (ngSubmit)="categoryToSave.emit(categoryNameForm.value)">-->
-
-  <!--</form>-->
 </div>

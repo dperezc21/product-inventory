@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatCardTitle} from '@angular/material/card';
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatButton} from '@angular/material/button';

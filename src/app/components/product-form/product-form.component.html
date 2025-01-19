@@ -22,15 +22,16 @@
     <mat-form-field appearance="outline">
       <mat-select placeholder="select category name" formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</mat-option>
-        <mat-option (click)="createCategory.emit()">
-          create category
+        <mat-option style="display: flex; flex-direction: row-reverse" (click)="createCategory.emit()">
+          <span>create category</span>
+          <mat-icon>add_circle</mat-icon>
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-card-actions class="buttons-container">
       <button mat-stroked-button (click)="close.emit()" type="button">Cancel</button>
-      <button mat-flat-button type="submit" [disabled]="productForm.invalid">{{productToEdit.id ? 'Edit' : 'Save'}}</button>
+      <button mat-flat-button type="submit" [disabled]="productForm.invalid">{{buttonAction}}</button>
     </mat-card-actions>
   </form>
 </div>

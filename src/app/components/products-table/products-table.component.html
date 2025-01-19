@@ -34,8 +34,14 @@
           <span class="material-icons">more_vert</span>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="editProduct.next(element)">Edit</button>
-          <button mat-menu-item (click)="deleteProduct.next(element)">Delete</button>
+          <button mat-menu-item (click)="editProduct.next(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="deleteProduct.next(element)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
         </mat-menu>
       </td>
     </ng-container>

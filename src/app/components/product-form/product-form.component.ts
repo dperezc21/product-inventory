@@ -8,6 +8,7 @@ import {MatCardActions} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {Product} from '../../core/interfaces/product-model';
 import {NgForOf} from '@angular/common';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-form',
@@ -20,7 +21,8 @@ import {NgForOf} from '@angular/common';
     MatCardActions,
     MatButton,
     MatLabel,
-    NgForOf
+    NgForOf,
+    MatIcon
   ],
   templateUrl: './product-form.component.html',
   standalone: true,
@@ -34,6 +36,7 @@ export class ProductFormComponent implements OnInit {
   @Input() categories!: Category[];
   @Input() productToEdit!: Product;
   productForm!: FormGroup;
+  buttonAction!: string;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -42,6 +45,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.buttonAction = this.productToEdit?.id ? 'Edit' : 'Save'
     this.productForm = this.formBuilder.group({
       name: new FormControl(this.productToEdit?.productName ?? '', [Validators.required]),
       price: new FormControl(this.productToEdit?.productPrice ?? '', [Validators.required]),
