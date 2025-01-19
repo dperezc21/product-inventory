@@ -13,3 +13,10 @@
   display: flex;
   justify-content: flex-start;
 }
+
+.text-list-empty {
+  display: flex;
+  justify-content: center;
+  color: #e64b4b;
+  font-weight: bold;
+}

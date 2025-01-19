@@ -7,7 +7,7 @@ import {
   MatHeaderCell,
   MatHeaderCellDef,
   MatHeaderRow,
-  MatHeaderRowDef,
+  MatHeaderRowDef, MatNoDataRow,
   MatRow,
   MatRowDef,
   MatTable
@@ -33,7 +33,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatMenuItem,
     MatMenuTrigger,
     MatButton,
-    MatIconModule
+    MatIconModule,
+    MatNoDataRow
   ],
   templateUrl: './products-table.component.html',
   standalone: true,
