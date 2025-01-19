@@ -32,25 +32,31 @@ export class ProductFormComponent implements OnInit {
   @Output() productToSave: EventEmitter<Product> = new EventEmitter();
   @Output() createCategory: EventEmitter<void> = new EventEmitter();
   @Input() categories!: Category[];
-  addProductForm!: FormGroup;
+  @Input() productToEdit!: Product;
+  productForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 
+  findCategory(categoryId: number): Category {
+    return this.categories.find(value => value.id == categoryId) as Category;
+  }
+
   ngOnInit(): void {
-    this.addProductForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      stock: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required])
+    this.productForm = this.formBuilder.group({
+      name: new FormControl(this.productToEdit?.productName ?? '', [Validators.required]),
+      price: new FormControl(this.productToEdit?.productPrice ?? '', [Validators.required]),
+      stock: new FormControl(this.productToEdit?.stock ?? '', [Validators.required]),
+      category: new FormControl(this.productToEdit?.category.id ?? '', [Validators.required])
     });
   }
 
   saveProduct(value: any) {
     const product: Product = {
+      id: this.productToEdit?.id,
       productName: value.name,
       stock: value.stock,
       productPrice: value.price,
-      category: value.category
+      category: this.findCategory(value.category)
     }
     this.productToSave.emit(product);
   }

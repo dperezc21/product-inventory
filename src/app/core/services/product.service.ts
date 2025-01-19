@@ -21,4 +21,8 @@ export class ProductService {
   deleteProductById(productId: number): Observable<any> {
     return this.http.delete(`${PRODUCT_BASE_URL}/${productId}` ).pipe(map(value => value));
   }
+
+  editProduct(id: number | undefined, productToSave: Product): Observable<any> {
+    return this.http.put(`${PRODUCT_BASE_URL}/${id}`, productToSave).pipe(map(value => value));
+  }
 }

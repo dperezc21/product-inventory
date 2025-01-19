@@ -1,6 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ProductController} from '../../core/controllers/product-controller';
-import {combineLatestAll, concatMap, EMPTY, iif, map, mergeAll, Observable, of, switchMap, take, tap} from 'rxjs';
+import {concatMap, EMPTY, iif, Observable} from 'rxjs';
 import {Product} from '../../core/interfaces/product-model';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {ProductsTableComponent} from '../products-table/products-table.component';
@@ -8,7 +8,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {CategoryController} from '../../core/controllers/category.controller';
 import {ConfirmDialogComponent} from '../../shared/components/confirm-dialog/confirm-dialog.component';
-import {log} from 'node:util';
 
 @Component({
   selector: 'app-product-main-container',
@@ -31,6 +30,7 @@ export class ProductMainContainerComponent implements OnInit, OnDestroy {
 
   createProduct() {
     this.dialog.open(AddProductComponent, {
+      data: { action: "add" },
       height: "450px",
       width: "350px",
     });
@@ -48,6 +48,14 @@ export class ProductMainContainerComponent implements OnInit, OnDestroy {
       return iif(() => value,
         this.productController.deleteProduct(productToDelete.id as number), EMPTY)
     })).subscribe();
+  }
+
+  editProduct(product: Product) {
+    this.dialog.open(AddProductComponent, {
+      data: { action: "edit", product },
+      height: "450px",
+      width: "350px",
+    });
   }
 
   ngOnInit(): void {

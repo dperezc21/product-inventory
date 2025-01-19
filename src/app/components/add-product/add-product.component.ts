@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Product} from '../../core/interfaces/product-model';
 import {ProductController} from '../../core/controllers/product-controller';
 import {Category} from '../../core/interfaces/category-model';
@@ -8,6 +8,7 @@ import {CategoryController} from '../../core/controllers/category.controller';
 import {Observable} from 'rxjs';
 import {ProductFormComponent} from '../product-form/product-form.component';
 import {CategoryFormComponent} from '../category-form/category-form.component';
+import {DialogData} from '../../core/interfaces/dialog-data';
 
 @Component({
   selector: 'app-add-product',
@@ -23,13 +24,16 @@ import {CategoryFormComponent} from '../category-form/category-form.component';
 })
 export class AddProductComponent implements OnInit, OnDestroy {
   readonly dialogRef = inject(MatDialogRef<AddProductComponent>);
+  readonly data  = inject<DialogData<Product>>(MAT_DIALOG_DATA);
+  readonly product: Product = this.data?.product;
+  readonly action: string = this.data.action;
   categories$!: Observable<Category[]>;
   isCreatingCategory!: boolean;
 
   constructor(private productController: ProductController,
               private categoryController: CategoryController) {}
 
-  closeDialog() {
+  closeDialog = () => {
     this.dialogRef.close();
   }
 
@@ -42,7 +46,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   }
 
   saveProduct(productToSave: Product) {
-    this.productController.createProduct(productToSave, this.dialogRef);
+    if(this.action == 'add') this.productController.createProduct(productToSave, this.closeDialog);
+    else if(this.action == "edit") this.productController.editProduct(productToSave, this.closeDialog)
   }
 
   ngOnInit(): void {
