@@ -7,7 +7,7 @@ import {ProductsTableComponent} from '../products-table/products-table.component
 import {MatDialog} from '@angular/material/dialog';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {CategoryController} from '../../core/controllers/category.controller';
-import {ConfirmDialogComponent} from '../../component/confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent} from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import {log} from 'node:util';
 
 @Component({
