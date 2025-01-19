@@ -6,17 +6,17 @@
   <form class="flex-column" [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
     <mat-form-field appearance="outline">
       <mat-label>name</mat-label>
-      <input matInput placeholder="product name" formControlName="name">
+      <input type="text" matInput placeholder="product name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>price (pesos)</mat-label>
-      <input matInput placeholder="product price" formControlName="price">
+      <input type="number" matInput placeholder="product price" formControlName="price">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>stock</mat-label>
-      <input matInput placeholder="product stock" formControlName="stock">
+      <input type="number" matInput placeholder="product stock" formControlName="stock">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
