@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run config -- --environment=dev && ng serve",
-    "start:railway": "node dist/moca/server/server.mjs",
+    "start:railway": "node dist/product-inventory/server/server.mjs",
     "config": "node ./config/set-env.config.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
