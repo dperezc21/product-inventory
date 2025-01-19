@@ -35,6 +35,16 @@ export class ProductController {
       .subscribe();
   }
 
+  deleteProduct(productId: number): Observable<any> {
+    return this.productService.deleteProductById(productId)
+      .pipe(tap({
+        next: () => {
+          this.removeProductOfList(productId);
+          this.snackBarService.showSnackBar("product deleted")
+        }, error: () => this.snackBarService.showSnackBar("Error unexpected")
+      }));
+  }
+
   setProducts$(products: Product[]): void {
     this.productList$.next(products);
   }
@@ -45,6 +55,11 @@ export class ProductController {
 
   setNewProduct(product: Product): void {
     this.setProducts$([...this.productList$.getValue(), product]);
+  }
+
+  removeProductOfList(productId: number): void {
+    const products: Product[]= this.productList$.getValue().filter(product => product.id != productId);
+    this.setProducts$(products);
   }
 
   onDestroy(): void {

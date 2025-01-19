@@ -1,0 +1,11 @@
+<div class="flex-column confirm-container">
+  <mat-card-title>
+    <h3>{{title}}</h3>
+  </mat-card-title>
+  <p class="message">{{message}}</p>
+
+  <div class="buttons-container">
+    <button mat-raised-button (click)="dialogRef.close(false)">go back</button>
+    <button mat-flat-button (click)="dialogRef.close(true)">Delete</button>
+  </div>
+</div>

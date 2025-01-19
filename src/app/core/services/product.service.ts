@@ -17,4 +17,8 @@ export class ProductService {
     return this.http.post<Product>(`${PRODUCT_BASE_URL}`, product)
       .pipe(map((value: Product) => value));
   }
+
+  deleteProductById(productId: number): Observable<any> {
+    return this.http.delete(`${PRODUCT_BASE_URL}/${productId}` ).pipe(map(value => value));
+  }
 }

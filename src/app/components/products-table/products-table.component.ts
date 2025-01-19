@@ -38,7 +38,7 @@ export class ProductsTableComponent {
 
   @Output() addProduct: EventEmitter<void> = new EventEmitter();
   @Output() editProduct: EventEmitter<Product> = new EventEmitter();
-  @Output() deleteProduct: EventEmitter<number> = new EventEmitter();
+  @Output() deleteProduct: EventEmitter<Product> = new EventEmitter();
   @Input() dataSource!: Product[];
   displayedColumns: string[] = ['name', 'price', 'stock', 'categoryName', 'menu'];
 

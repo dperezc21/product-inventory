@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="(products$ | async) as products" class="product-list">
     <app-products-table [dataSource]="products"
-      (addProduct)="createProduct()"
+      (addProduct)="createProduct()" (deleteProduct)="deleteProduct($event)"
     ></app-products-table>
   </div>
 </div>
