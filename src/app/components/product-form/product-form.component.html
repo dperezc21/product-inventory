@@ -4,22 +4,24 @@
   </div>
 
   <form class="flex-column" [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
-    <mat-form-field appearance="outline">
+    <mat-form-field class="padding-5" appearance="outline">
       <mat-label>name</mat-label>
       <input type="text" matInput placeholder="product name" formControlName="name">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>price (pesos)</mat-label>
+    <mat-form-field class="padding-5" appearance="outline">
+      <mat-label>price (pesos) </mat-label>
       <input type="number" matInput placeholder="product price" formControlName="price">
+      <mat-hint align="start" class="red-color" *ngIf="productForm.controls['price'].hasError('invalidNumber')">price has be positive</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field class="padding-5" appearance="outline">
       <mat-label>stock</mat-label>
       <input type="number" matInput placeholder="product stock" formControlName="stock">
+      <mat-hint align="start" class="red-color" *ngIf="productForm.controls['stock'].hasError('invalidNumber')">stock has be positive</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field class="padding-5" appearance="outline">
       <mat-select placeholder="select category name" formControlName="category">
         <mat-option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</mat-option>
         <mat-option style="display: flex; flex-direction: row-reverse" (click)="createCategory.emit()">

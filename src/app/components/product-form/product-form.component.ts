@@ -1,14 +1,15 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Category} from '../../core/interfaces/category-model';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatFormField, MatHint, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {MatCardActions} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {Product} from '../../core/interfaces/product-model';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
+import {validPositiveNumber} from '../../shared/form-validators/product-validations';
 
 @Component({
   selector: 'app-product-form',
@@ -22,7 +23,9 @@ import {MatIcon} from '@angular/material/icon';
     MatButton,
     MatLabel,
     NgForOf,
-    MatIcon
+    MatIcon,
+    NgIf,
+    MatHint
   ],
   templateUrl: './product-form.component.html',
   standalone: true,
@@ -48,8 +51,8 @@ export class ProductFormComponent implements OnInit {
     this.buttonAction = this.productToEdit?.id ? 'Edit' : 'Save'
     this.productForm = this.formBuilder.group({
       name: new FormControl(this.productToEdit?.productName ?? '', [Validators.required]),
-      price: new FormControl(this.productToEdit?.productPrice ?? '', [Validators.required]),
-      stock: new FormControl(this.productToEdit?.stock ?? '', [Validators.required]),
+      price: new FormControl(this.productToEdit?.productPrice ?? '', [Validators.required, validPositiveNumber]),
+      stock: new FormControl(this.productToEdit?.stock ?? '', [Validators.required, validPositiveNumber]),
       category: new FormControl(this.productToEdit?.category.id ?? '', [Validators.required])
     });
   }
